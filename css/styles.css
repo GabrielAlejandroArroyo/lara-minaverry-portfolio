@@ -175,11 +175,28 @@ a {
 .hero {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 64px 22px 48px;
+  padding: 64px 22px 40px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 240px;
-  gap: 40px;
+  gap: 28px 40px;
   align-items: center;
+}
+
+.hero-media {
+  grid-column: 1 / -1;
+}
+
+.hero-media .media-grid {
+  margin: 0;
+}
+
+.hero-media .media-card .body {
+  padding: 12px 14px 14px;
+}
+
+.hero-media .play {
+  width: 40px;
+  height: 40px;
 }
 
 .hero-inner {
@@ -878,6 +895,10 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
+  .hero-media .media-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .tile.featured {
     grid-column: 1 / -1;
     grid-row: auto;
@@ -900,6 +921,10 @@ footer {
 
   .hero {
     padding-top: 36px;
+  }
+
+  .hero-media {
+    grid-column: auto;
   }
 
   .portrait {
