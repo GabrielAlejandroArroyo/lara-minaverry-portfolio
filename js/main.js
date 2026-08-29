@@ -8,6 +8,7 @@ const SITE = {
 
 const html = document.documentElement;
 const langBtn = document.getElementById("lang-toggle");
+const themeBtn = document.getElementById("theme-toggle");
 const menuBtn = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
 const yearEl = document.getElementById("year");
@@ -39,6 +40,27 @@ if (savedLang === "en" || savedLang === "es") {
 
 langBtn?.addEventListener("click", () => {
   setLang(html.lang === "es" ? "en" : "es");
+});
+
+function setTheme(theme) {
+  html.setAttribute("data-theme", theme);
+  localStorage.setItem("lm-theme", theme);
+  if (themeBtn) {
+    const toLight = theme === "dark";
+    themeBtn.setAttribute(
+      "aria-label",
+      html.lang === "en"
+        ? (toLight ? "Switch to light mode" : "Switch to dark mode")
+        : (toLight ? "Cambiar a modo claro" : "Cambiar a modo oscuro")
+    );
+  }
+}
+
+const currentTheme = html.getAttribute("data-theme") === "dark" ? "dark" : "light";
+setTheme(currentTheme);
+
+themeBtn?.addEventListener("click", () => {
+  setTheme(html.getAttribute("data-theme") === "dark" ? "light" : "dark");
 });
 
 menuBtn?.addEventListener("click", () => {

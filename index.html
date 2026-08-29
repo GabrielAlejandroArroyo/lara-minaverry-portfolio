@@ -27,6 +27,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css">
+  <script>
+    (function () {
+      var saved = localStorage.getItem("lm-theme");
+      var theme = saved === "dark" || saved === "light"
+        ? saved
+        : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -107,6 +116,10 @@
           <span class="es">Referencias</span>
           <span class="en">References</span>
         </a>
+        <a href="#redes">
+          <span class="es">Redes</span>
+          <span class="en">Social</span>
+        </a>
         <a href="#contacto">
           <span class="es">Contacto</span>
           <span class="en">Contact</span>
@@ -114,6 +127,12 @@
         <a href="./cv.html">CV</a>
       </nav>
       <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro">
+          <span class="es theme-to-dark">Oscuro</span>
+          <span class="en theme-to-dark">Dark</span>
+          <span class="es theme-to-light">Claro</span>
+          <span class="en theme-to-light">Light</span>
+        </button>
         <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch to English">EN</button>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
       </div>
@@ -527,74 +546,264 @@
 
     <section class="wrap section" id="redes">
       <h2>
-        <span class="es">Likes, compartidos y Demo Days</span>
-        <span class="en">Likes, shares, and Demo Days</span>
+        <span class="es">Hallazgos en redes</span>
+        <span class="en">What’s on the networks</span>
       </h2>
       <p class="lead">
-        <span class="es">LinkedIn es su canal (414 seguidores, 298 contactos). Los videos de participación viven en las publicaciones de Demo Day. No hay YouTube, Instagram o GitHub públicos verificados a su nombre.</span>
-        <span class="en">LinkedIn is her channel (414 followers, 298 connections). Participation videos live in Demo Day posts. No verified public YouTube, Instagram, or GitHub in her name.</span>
+        <span class="es">Mosaico siempre visible. El detalle queda colapsado: abrilo si querés el ranking, las reacciones y los enlaces.</span>
+        <span class="en">The mosaic stays visible. Details stay collapsed: open a panel for rankings, reactions, and links.</span>
+      </p>
+      <p class="find-note">
+        <span class="find-badge"><strong>LinkedIn</strong> 414 · 298</span>
+        <span class="find-badge"><strong>72</strong> <span class="es">reacciones top</span><span class="en">top reactions</span></span>
+        <span class="find-badge"><strong>YouTube</strong> 0</span>
+        <span class="find-badge"><strong>Torre</strong> laraverry</span>
       </p>
       <div class="mosaic">
-        <a class="tile featured" href="https://www.linkedin.com/posts/leticiabohrer_o-hackathon-brasil-one-g9-come%C3%A7ou-activity-7477884859479322624-IS2M" rel="noopener noreferrer" target="_blank">
-          <strong>Hackathon ONE G9</strong>
-          <span class="es">Letícia Bohrer la nombra en el arranque del hackathon Brasil, con Oracle, Alura y No Country.</span>
-          <span class="en">Letícia Bohrer names her at the Brazil hackathon kickoff, with Oracle, Alura, and No Country.</span>
-          <em>69 reacciones · 2 veces compartida</em>
+        <a class="tile featured" href="https://www.linkedin.com/posts/leandrobuzeta_hackathonone-simulacionlaboral-activity-7423051481609789440-6c-J" rel="noopener noreferrer" target="_blank">
+          <strong>LinkedIn · 72</strong>
+          <span class="es">El CEO cierra el hackathon más grande de Latam y la nombra en el equipo operativo.</span>
+          <span class="en">The CEO closes Latam’s largest hackathon and names her on the ops team.</span>
+          <em>72 reacciones</em>
         </a>
-        <a class="tile" href="https://www.linkedin.com/posts/leandrobuzeta_hackathonoraclenexteducation-nocountry-activity-7478159875097649152-KSkL" rel="noopener noreferrer" target="_blank">
-          <strong>CEO No Country</strong>
-          <span class="es">Leandro Buzeta la incluye en el equipo operativo del ONE Hackathon Brasil.</span>
-          <span class="en">Leandro Buzeta includes her in the Brazil ONE Hackathon operations team.</span>
-          <em>22 reacciones · 4 veces compartida</em>
+        <a class="tile" href="https://www.linkedin.com/posts/leticiabohrer_o-hackathon-brasil-one-g9-come%C3%A7ou-activity-7477884859479322624-IS2M" rel="noopener noreferrer" target="_blank">
+          <strong>ONE G9</strong>
+          <span class="es">Letícia Bohrer la nombra en el kickoff Brasil.</span>
+          <span class="en">Letícia Bohrer names her at the Brazil kickoff.</span>
+          <em>69 reacciones · 2 shares</em>
+        </a>
+        <a class="tile" href="https://www.linkedin.com/posts/julieta-mores_feliz-teamleader-nocountry-activity-7227458369584828416-GH7T" rel="noopener noreferrer" target="_blank">
+          <strong>
+            <span class="es">Mentora</span>
+            <span class="en">Mentor</span>
+          </strong>
+          <span class="es">Julieta Mores: “me explicó cómo ser una excelente Team Leader.”</span>
+          <span class="en">Julieta Mores: “she explained how to be an excellent Team Leader.”</span>
+          <em>48 reacciones</em>
         </a>
         <a class="tile" href="https://www.linkedin.com/posts/leandrobuzeta_demo-day-del-hackathon-one-lo-vivido-activity-7376243141173055488-gp12" rel="noopener noreferrer" target="_blank">
-          <strong>Demo Day ONE</strong>
-          <span class="es">Lara figura en el equipo que sostiene la operación. Ver video y relato en LinkedIn.</span>
-          <span class="en">Lara is named in the operations team. Watch the video and recap on LinkedIn.</span>
+          <strong>Demo Day</strong>
+          <span class="es">Video y relato del Demo Day ONE.</span>
+          <span class="en">ONE Demo Day video and recap.</span>
           <em>
-            <span class="es">Ver video en LinkedIn</span>
-            <span class="en">Watch on LinkedIn</span>
+            <span class="es">Video en LinkedIn</span>
+            <span class="en">Video on LinkedIn</span>
           </em>
-        </a>
-        <a class="tile" href="https://www.linkedin.com/posts/nocountrytalent_testimonios-hackathon-one-activity-7388972037945344000-w9BM" rel="noopener noreferrer" target="_blank">
-          <strong>
-            <span class="es">Testimonios ONE</span>
-            <span class="en">ONE testimonials</span>
-          </strong>
-          <span class="es">No Country publica testimonios del Hackathon One, con Alura y Oracle.</span>
-          <span class="en">No Country publishes Hackathon One testimonials, with Alura and Oracle.</span>
-          <em>36 reacciones</em>
         </a>
         <a class="tile" href="https://www.linkedin.com/in/lara-minaverry/" rel="noopener noreferrer" target="_blank">
-          <strong>LinkedIn</strong>
-          <span class="es">Perfil profesional · Open to work</span>
-          <span class="en">Professional profile · Open to work</span>
+          <strong>Perfil</strong>
+          <span class="es">Canal profesional. Open to work.</span>
+          <span class="en">Professional channel. Open to work.</span>
           <em>414 seguidores · 298 contactos</em>
-        </a>
-        <a class="tile" href="https://www.linkedin.com/in/lara-minaverry/recent-activity/all/" rel="noopener noreferrer" target="_blank">
-          <strong>
-            <span class="es">Actividad</span>
-            <span class="en">Activity</span>
-          </strong>
-          <span class="es">Compartidos de Demo Day y hackathones</span>
-          <span class="en">Demo Day and hackathon shares</span>
-          <em>
-            <span class="es">Feed público</span>
-            <span class="en">Public feed</span>
-          </em>
-        </a>
-        <a class="tile" href="https://companies.nocountry.tech" rel="noopener noreferrer" target="_blank">
-          <strong>No Country Companies</strong>
-          <span class="es">Donde empresas observan talento en acción.</span>
-          <span class="en">Where companies watch talent in action.</span>
-          <em>companies.nocountry.tech</em>
         </a>
         <a class="tile" href="https://torre.ai/laraverry" rel="noopener noreferrer" target="_blank">
           <strong>Torre</strong>
-          <span class="es">Perfil público de talento con experiencia y stack.</span>
-          <span class="en">Public talent profile with experience and stack.</span>
+          <span class="es">Ficha pública de talento.</span>
+          <span class="en">Public talent profile.</span>
           <em>torre.ai/laraverry</em>
         </a>
+        <a class="tile" href="https://www.youtube.com/results?search_query=Lara+Minaverry" rel="noopener noreferrer" target="_blank">
+          <strong>YouTube</strong>
+          <span class="es">Búsqueda pública: 0 videos a su nombre.</span>
+          <span class="en">Public search: 0 videos in her name.</span>
+          <em>0 / 15</em>
+        </a>
+        <a class="tile" href="https://portfolio-lara-minaverry.netlify.app/" rel="noopener noreferrer" target="_blank">
+          <strong>Netlify</strong>
+          <span class="es">Portfolio anterior público.</span>
+          <span class="en">Earlier public portfolio.</span>
+          <em>portfolio-lara-minaverry.netlify.app</em>
+        </a>
+      </div>
+
+      <div class="find-accordions">
+        <details class="find-panel is-hot">
+          <summary>
+            LinkedIn
+            <span class="find-meta">
+              <span class="es">Top 10 menciones · reacciones visibles</span>
+              <span class="en">Top 10 mentions · visible reactions</span>
+            </span>
+          </summary>
+          <div class="find-body">
+            <ol class="find-list">
+              <li>
+                <a href="https://www.linkedin.com/posts/leandrobuzeta_hackathonone-simulacionlaboral-activity-7423051481609789440-6c-J" rel="noopener noreferrer" target="_blank">Leandro Buzeta · cierre Hackathon ONE</a>
+                <span class="es"> — la nombra en el equipo operativo.</span>
+                <span class="en"> — names her on the ops team.</span>
+                <div class="rx">72 reacciones</div>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/posts/leticiabohrer_o-hackathon-brasil-one-g9-come%C3%A7ou-activity-7477884859479322624-IS2M" rel="noopener noreferrer" target="_blank">Letícia Bohrer · ONE G9 Brasil</a>
+                <span class="es"> — la nombra en el arranque con Oracle, Alura y No Country.</span>
+                <span class="en"> — names her at kickoff with Oracle, Alura, and No Country.</span>
+                <div class="rx">69 reacciones · 2 veces compartida</div>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/posts/julieta-mores_feliz-teamleader-nocountry-activity-7227458369584828416-GH7T" rel="noopener noreferrer" target="_blank">Julieta Mores · mentora TL</a>
+                <span class="es"> — “me explicó cómo ser una excelente Team Leader.”</span>
+                <span class="en"> — “she explained how to be an excellent Team Leader.”</span>
+                <div class="rx">48 reacciones</div>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/posts/nocountrytalent_testimonios-hackathon-one-activity-7388972037945344000-w9BM" rel="noopener noreferrer" target="_blank">No Country · testimonios ONE</a>
+                <div class="rx">36 reacciones</div>
+              </li>
+              <li>
+                <a href="https://es.linkedin.com/posts/julia-daniela-rodriguez_nocountry-activity-7421876830359408641-1PIu" rel="noopener noreferrer" target="_blank">Julia Daniela Rodriguez · Demo Day ONE</a>
+                <span class="es"> — agradece acompañamiento en Discord.</span>
+                <span class="en"> — thanks her for Discord support.</span>
+                <div class="rx">33 reacciones · 6 comentarios</div>
+              </li>
+              <li>
+                <a href="https://es.linkedin.com/posts/orlibetdungonzalez_one-porunmillondeamigos-makeyourselfvisible-activity-7406732266196082689-m-iG" rel="noopener noreferrer" target="_blank">Orlibet Dun · live Hackathon ONE II</a>
+                <span class="es"> — “ese puente vale oro.”</span>
+                <span class="en"> — “that bridge is gold.”</span>
+                <div class="rx">33 reacciones</div>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/posts/orlibetdungonzalez_one-porunmillondeamigos-makeyourselfvisible-activity-7422254398161981440-el7b" rel="noopener noreferrer" target="_blank">Orlibet Dun · jurado Demo Day</a>
+                <span class="es"> — la nombra junto al CEO por liderar la plataforma.</span>
+                <span class="en"> — names her with the CEO for leading the platform.</span>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/posts/leandrobuzeta_hackathonoraclenexteducation-nocountry-activity-7478159875097649152-KSkL" rel="noopener noreferrer" target="_blank">Leandro Buzeta · ONE Hackathon Brasil</a>
+                <div class="rx">22 reacciones · 4 veces compartida</div>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/posts/daiana-amado_unionwallet-nocountry-pr%C3%A1cticaslaboralesit-activity-7190723061963177985-Dz-_" rel="noopener noreferrer" target="_blank">Daiana Amado · Union Wallet</a>
+                <span class="es"> — “orientación fundamental para nuestro éxito.”</span>
+                <span class="en"> — “guidance essential to our success.”</span>
+              </li>
+              <li>
+                <a href="https://es.linkedin.com/posts/leonardo-manuel-tolaba_nutrimarket-activity-7171969338957139968-Vj6v" rel="noopener noreferrer" target="_blank">Leonardo Tolaba · Nutrimarket</a>
+                <span class="es"> — cita su liderazgo como Team Leader y comparte video de presentación.</span>
+                <span class="en"> — cites her Team Leader role and shares a pitch video.</span>
+              </li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="find-panel is-hot">
+          <summary>
+            YouTube
+            <span class="find-meta">
+              <span class="es">Top 15 pedido · hallazgo: 0 videos propios</span>
+              <span class="en">Top 15 requested · finding: 0 videos of her own</span>
+            </span>
+          </summary>
+          <div class="find-body">
+            <p>
+              <span class="es">No hay canal ni videos indexados a nombre de Lara Minaverry. No inventamos 15 piezas. Los videos de participación están en LinkedIn (Demo Days y pitches de equipos). Verificá la búsqueda pública: </span>
+              <span class="en">There is no channel or indexed video in Lara Minaverry’s name. We will not invent 15 clips. Participation videos live on LinkedIn (Demo Days and team pitches). Check the public search: </span>
+              <a href="https://www.youtube.com/results?search_query=Lara+Minaverry" rel="noopener noreferrer" target="_blank">YouTube · Lara Minaverry</a>
+            </p>
+            <ol class="find-list">
+              <li>
+                <a href="https://www.linkedin.com/posts/leandrobuzeta_demo-day-del-hackathon-one-lo-vivido-activity-7376243141173055488-gp12" rel="noopener noreferrer" target="_blank">Demo Day Hackathon ONE</a>
+                <span class="es"> — video y relato; Lara en operación.</span>
+                <span class="en"> — video and recap; Lara in operations.</span>
+              </li>
+              <li>
+                <a href="https://es.linkedin.com/posts/leonardo-manuel-tolaba_nutrimarket-activity-7171969338957139968-Vj6v" rel="noopener noreferrer" target="_blank">Presentación Nutrimarket</a>
+                <span class="es"> — video de pitch del equipo que lideró.</span>
+                <span class="en"> — pitch video from a team she led.</span>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/posts/nocountrytalent_testimonios-hackathon-one-activity-7388972037945344000-w9BM" rel="noopener noreferrer" target="_blank">Testimonios Hackathon One</a>
+                <div class="rx">36 reacciones</div>
+              </li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="find-panel">
+          <summary>
+            Torre
+            <span class="find-meta">1 perfil verificado</span>
+          </summary>
+          <div class="find-body">
+            <ol class="find-list">
+              <li>
+                <a href="https://torre.ai/laraverry" rel="noopener noreferrer" target="_blank">torre.ai/laraverry</a>
+                <span class="es"> — ficha pública: operaciones, TL, frontend y no-code.</span>
+                <span class="en"> — public profile: operations, TL, frontend and no-code.</span>
+              </li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="find-panel">
+          <summary>
+            Discord
+            <span class="find-meta">
+              <span class="es">Mención pública · sin perfil abierto</span>
+              <span class="en">Public mention · no open profile</span>
+            </span>
+          </summary>
+          <div class="find-body">
+            <ol class="find-list">
+              <li>
+                <a href="https://es.linkedin.com/posts/julia-daniela-rodriguez_nocountry-activity-7421876830359408641-1PIu" rel="noopener noreferrer" target="_blank">Julia Daniela Rodriguez</a>
+                <span class="es"> — “acompañamiento constante en Discord.” 33 reacciones.</span>
+                <span class="en"> — “constant support on Discord.” 33 reactions.</span>
+              </li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="find-panel">
+          <summary>
+            GitHub · Netlify
+            <span class="find-meta">
+              <span class="es">Sin cuenta personal verificada</span>
+              <span class="en">No verified personal account</span>
+            </span>
+          </summary>
+          <div class="find-body">
+            <ol class="find-list">
+              <li>
+                <a href="https://portfolio-lara-minaverry.netlify.app/" rel="noopener noreferrer" target="_blank">portfolio-lara-minaverry.netlify.app</a>
+                <span class="es"> — sitio anterior.</span>
+                <span class="en"> — earlier site.</span>
+              </li>
+              <li>
+                <a href="https://github.com/No-Country-simulation" rel="noopener noreferrer" target="_blank">github.com/No-Country-simulation</a>
+                <span class="es"> — org de la plataforma, no un user personal.</span>
+                <span class="en"> — platform org, not a personal user.</span>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/posts/daiana-amado_unionwallet-nocountry-pr%C3%A1cticaslaboralesit-activity-7190723061963177985-Dz-_" rel="noopener noreferrer" target="_blank">Union Wallet en GitHub</a>
+                <span class="es"> — el equipo publica el repo; Lara figura como TL.</span>
+                <span class="en"> — the team published the repo; Lara is named as TL.</span>
+              </li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="find-panel">
+          <summary>
+            Instagram · X · TikTok
+            <span class="find-meta">
+              <span class="es">0 perfiles personales verificados</span>
+              <span class="en">0 verified personal profiles</span>
+            </span>
+          </summary>
+          <div class="find-body">
+            <p>
+              <span class="es">No hay Instagram, X ni TikTok públicos a su nombre. El canal profesional es LinkedIn.</span>
+              <span class="en">No public Instagram, X, or TikTok in her name. The professional channel is LinkedIn.</span>
+            </p>
+            <ol class="find-list">
+              <li>
+                <a href="https://nocountry.tech/talent" rel="noopener noreferrer" target="_blank">nocountry.tech/talent</a>
+              </li>
+              <li>
+                <a href="https://companies.nocountry.tech" rel="noopener noreferrer" target="_blank">companies.nocountry.tech</a>
+              </li>
+            </ol>
+          </div>
+        </details>
       </div>
     </section>
 
