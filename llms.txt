@@ -1,6 +1,6 @@
 # Lara Minaverry
 
-Coordinadora de Operaciones Tech y Team Leader en entornos de talento, simulaciones laborales y hackathones. También construye interfaces con frontend y no-code. Argentina. Open to work: Buenos Aires, híbrido o remoto.
+Hace que hackathones y simulaciones laborales entreguen producto. Coordinadora de Operaciones Tech y Team Leader en entornos de talento. También construye con frontend y no-code. Argentina. Open to work: Buenos Aires, híbrido o remoto.
 
 ## Role target
 - Primary: Operations Coordinator, Tech Operations, Team Leader, Program Operations, EdTech operations
