@@ -172,31 +172,31 @@ a {
   padding: 0 22px;
 }
 
+.top-videos {
+  padding: 20px 0 8px;
+}
+
+.top-videos .kicker {
+  margin-bottom: 14px;
+}
+
+.top-videos .media-card .body {
+  padding: 12px 14px 14px;
+}
+
+.top-videos .play {
+  width: 40px;
+  height: 40px;
+}
+
 .hero {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 64px 22px 40px;
+  padding: 36px 22px 40px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 240px;
   gap: 28px 40px;
   align-items: center;
-}
-
-.hero-media {
-  grid-column: 1 / -1;
-}
-
-.hero-media .media-grid {
-  margin: 0;
-}
-
-.hero-media .media-card .body {
-  padding: 12px 14px 14px;
-}
-
-.hero-media .play {
-  width: 40px;
-  height: 40px;
 }
 
 .hero-inner {
@@ -715,6 +715,73 @@ html[data-theme="dark"] .filters button[aria-pressed="true"] {
   padding-top: 8px;
 }
 
+.lib-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 48px 0 10px;
+}
+
+.lib-lead {
+  margin-bottom: 22px;
+}
+
+.video-lib {
+  display: grid;
+  gap: 16px;
+}
+
+.lib-item {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.lib-item .media-card {
+  min-width: 0;
+}
+
+.lib-copy h4 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.lib-copy p {
+  margin: 0 0 10px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.lib-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.lib-badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  background: var(--teal-wash);
+}
+
+.lib-meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 .find-note {
   display: flex;
   flex-wrap: wrap;
@@ -895,7 +962,7 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
-  .hero-media .media-grid {
+  .top-videos .media-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -915,16 +982,17 @@ footer {
   .contact-box,
   .signal-row,
   .media-grid,
-  .mosaic {
+  .mosaic,
+  .lib-item {
     grid-template-columns: 1fr;
   }
 
   .hero {
-    padding-top: 36px;
+    padding-top: 28px;
   }
 
-  .hero-media {
-    grid-column: auto;
+  .top-videos .media-grid {
+    grid-template-columns: 1fr;
   }
 
   .portrait {
