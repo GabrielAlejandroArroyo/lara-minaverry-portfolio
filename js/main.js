@@ -120,10 +120,6 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") setMenuOpen(false);
 });
 
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 1080) setMenuOpen(false);
-});
-
 const savedLang = readStore("lm-lang");
 if (LANGS.includes(savedLang)) {
   setLang(savedLang);
@@ -235,7 +231,7 @@ function isInViewport(el) {
   return rect.top < window.innerHeight * 0.92 && rect.bottom > 80;
 }
 
-const sections = ["inicio", "sobre", "impacto", "trabajo", "videos", "referencias", "redes", "contacto"];
+const sections = ["inicio", "sobre", "impacto", "contratar", "trabajo", "videos", "referencias", "redes", "experiencia", "formacion", "contacto"];
 const navAnchors = navLinks?.querySelectorAll('a[href^="#"]') || [];
 
 function syncNav() {
