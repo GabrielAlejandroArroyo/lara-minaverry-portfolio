@@ -67,6 +67,22 @@ function writeStore(key, value) {
   }
 }
 
+function readSession(key) {
+  try {
+    return sessionStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeSession(key, value) {
+  try {
+    sessionStorage.setItem(key, value);
+  } catch {
+    /* ignore quota / private mode */
+  }
+}
+
 function currentLang() {
   return LANGS.includes(html.lang) ? html.lang : "es";
 }
@@ -110,10 +126,10 @@ function syncChrome() {
   }
 }
 
-function setLang(lang) {
+function setLang(lang, persist = true) {
   if (!LANGS.includes(lang)) return;
   html.lang = lang;
-  writeStore("lm-lang", lang);
+  if (persist) writeStore("lm-lang", lang);
   syncChrome();
 }
 
@@ -211,11 +227,68 @@ if (typeof desktopNav.addEventListener === "function") {
 
 syncMenuMode();
 
+const SPANISH_COUNTRIES = new Set([
+  "AR", "BO", "CL", "CO", "CR", "CU", "DO", "EC", "ES", "GQ", "GT", "HN",
+  "MX", "NI", "PA", "PE", "PR", "PY", "SV", "UY", "VE",
+]);
+const PORTUGUESE_COUNTRIES = new Set(["AO", "BR", "CV", "GW", "MZ", "PT", "ST", "TL"]);
+
+function langFromCountry(code) {
+  const country = String(code || "").toUpperCase();
+  if (SPANISH_COUNTRIES.has(country)) return "es";
+  if (PORTUGUESE_COUNTRIES.has(country)) return "pt";
+  return "en";
+}
+
+function langFromBrowser() {
+  const tags = [...(navigator.languages || []), navigator.language].filter(Boolean);
+  for (const tag of tags) {
+    const base = String(tag).slice(0, 2).toLowerCase();
+    if (LANGS.includes(base)) return base;
+  }
+  return "es";
+}
+
+async function fetchJson(url, timeoutMs = 2500) {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    if (!response.ok) return null;
+    return await response.json();
+  } catch {
+    return null;
+  } finally {
+    window.clearTimeout(timer);
+  }
+}
+
+async function fetchCountryCode() {
+  const geo = await fetchJson("https://get.geojs.io/v1/ip/country.json");
+  if (geo?.country) return geo.country;
+  const who = await fetchJson("https://ipwho.is/");
+  if (who?.success !== false && who?.country_code) return who.country_code;
+  return null;
+}
+
+async function detectVisitorLang() {
+  const cached = readSession("lm-lang-auto");
+  if (LANGS.includes(cached)) return cached;
+  const country = await fetchCountryCode();
+  const lang = country ? langFromCountry(country) : langFromBrowser();
+  writeSession("lm-lang-auto", lang);
+  return lang;
+}
+
 const savedLang = readStore("lm-lang");
 if (LANGS.includes(savedLang)) {
   setLang(savedLang);
 } else {
-  syncChrome();
+  setLang(langFromBrowser(), false);
+  detectVisitorLang().then((lang) => {
+    if (readStore("lm-lang")) return;
+    setLang(lang, false);
+  });
 }
 
 const savedTheme = readStore("lm-theme");

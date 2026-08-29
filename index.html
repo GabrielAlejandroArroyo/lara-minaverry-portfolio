@@ -43,6 +43,20 @@
       document.documentElement.setAttribute("data-theme", theme);
       if (savedLang === "es" || savedLang === "en" || savedLang === "pt") {
         document.documentElement.lang = savedLang;
+        return;
+      }
+      var navLangs = [];
+      try {
+        navLangs = navigator.languages && navigator.languages.length
+          ? navigator.languages
+          : (navigator.language ? [navigator.language] : []);
+      } catch (err) {}
+      for (var i = 0; i < navLangs.length; i++) {
+        var base = String(navLangs[i] || "").slice(0, 2).toLowerCase();
+        if (base === "es" || base === "en" || base === "pt") {
+          document.documentElement.lang = base;
+          break;
+        }
       }
     })();
   </script>
