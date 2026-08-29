@@ -88,16 +88,24 @@ function setTheme(theme) {
   syncChrome();
 }
 
+const desktopNav = window.matchMedia("(min-width: 720px)");
+
+function isDesktopNav() {
+  return desktopNav.matches;
+}
+
 function setMenuOpen(isOpen) {
-  navLinks?.classList.toggle("open", isOpen);
-  document.body.classList.toggle("nav-open", isOpen);
-  menuBtn?.setAttribute("aria-expanded", String(isOpen));
+  const desktop = isDesktopNav();
+  const open = desktop ? true : isOpen;
+  navLinks?.classList.toggle("open", open);
+  document.body.classList.toggle("nav-open", !desktop && open);
+  menuBtn?.setAttribute("aria-expanded", String(!desktop && open));
   if (navLinks) {
-    navLinks.setAttribute("aria-hidden", String(!isOpen));
-    navLinks.inert = !isOpen;
+    navLinks.setAttribute("aria-hidden", String(!open));
+    navLinks.inert = !open;
   }
   if (navBackdrop) {
-    if (isOpen) {
+    if (!desktop && open) {
       window.setTimeout(() => {
         if (document.body.classList.contains("nav-open")) navBackdrop.hidden = false;
       }, 20);
@@ -106,6 +114,10 @@ function setMenuOpen(isOpen) {
     }
   }
   syncChrome();
+}
+
+function syncMenuMode() {
+  setMenuOpen(isDesktopNav());
 }
 
 langBtns.forEach((btn) => {
@@ -125,14 +137,22 @@ menuBtn?.addEventListener("click", (event) => {
 navBackdrop?.addEventListener("click", () => setMenuOpen(false));
 
 navLinks?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => setMenuOpen(false));
+  link.addEventListener("click", () => {
+    if (!isDesktopNav()) setMenuOpen(false);
+  });
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") setMenuOpen(false);
+  if (event.key === "Escape" && !isDesktopNav()) setMenuOpen(false);
 });
 
-if (navLinks) navLinks.inert = true;
+if (typeof desktopNav.addEventListener === "function") {
+  desktopNav.addEventListener("change", syncMenuMode);
+} else if (typeof desktopNav.addListener === "function") {
+  desktopNav.addListener(syncMenuMode);
+}
+
+syncMenuMode();
 
 const savedLang = readStore("lm-lang");
 if (LANGS.includes(savedLang)) {
@@ -246,7 +266,9 @@ function isInViewport(el) {
 }
 
 const sections = ["inicio", "sobre", "impacto", "contratar", "trabajo", "videos", "referencias", "redes", "experiencia", "formacion", "contacto"];
-const navAnchors = navLinks?.querySelectorAll('a[href^="#"]') || [];
+const navAnchors = [...(navLinks?.querySelectorAll('a[href^="#"]') || [])].filter(
+  (link) => !link.classList.contains("nav-sidebar-logo")
+);
 
 function syncNav() {
   let current = "inicio";

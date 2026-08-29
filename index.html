@@ -111,52 +111,9 @@
             <span class="pt">Pular para o conteúdo</span>
   </a>
 
-  <header class="site-header">
-    <div class="nav-wrap">
-      <div class="nav-brand">
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
-          <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
-        </button>
-        <a class="logo" href="#inicio">Lara Minaverry</a>
-      </div>
-      <div class="nav-actions">
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro">
-          <span class="es theme-to-dark">Oscuro</span>
-          <span class="en theme-to-dark">Dark</span>
-          <span class="pt theme-to-dark">Escuro</span>
-          <span class="es theme-to-light">Claro</span>
-          <span class="en theme-to-light">Light</span>
-          <span class="pt theme-to-light">Claro</span>
-        </button>
-        <div class="lang-switch" role="group" aria-labelledby="lang-switch-label">
-          <span id="lang-switch-label" class="visually-hidden">
-            <span class="es">Idioma</span>
-            <span class="en">Language</span>
-            <span class="pt">Idioma</span>
-          </span>
-          <button type="button" class="lang-btn" data-lang="es" aria-pressed="true" aria-label="Español">
-            <svg class="flag" viewBox="0 0 16 11" aria-hidden="true"><rect width="16" height="11" fill="#74ACDF"/><rect y="3.67" width="16" height="3.66" fill="#fff"/><circle cx="8" cy="5.5" r="1.15" fill="#F6B40E"/></svg>
-            <span class="lang-code">ES</span>
-          </button>
-          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">
-            <svg class="flag" viewBox="0 0 16 11" aria-hidden="true"><rect width="16" height="11" fill="#012169"/><rect x="6.6" width="2.8" height="11" fill="#fff"/><rect y="4.1" width="16" height="2.8" fill="#fff"/><rect x="7.1" width="1.8" height="11" fill="#C8102E"/><rect y="4.6" width="16" height="1.8" fill="#C8102E"/></svg>
-            <span class="lang-code">EN</span>
-          </button>
-          <button type="button" class="lang-btn" data-lang="pt" aria-pressed="false" aria-label="Português">
-            <svg class="flag" viewBox="0 0 16 11" aria-hidden="true"><rect width="16" height="11" fill="#009B3A"/><polygon points="8,1.2 14.8,5.5 8,9.8 1.2,5.5" fill="#FEDD00"/><circle cx="8" cy="5.5" r="1.85" fill="#002776"/></svg>
-            <span class="lang-code">PT</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
   <div class="nav-backdrop" id="nav-backdrop" hidden></div>
   <nav id="nav-links" class="nav-links" aria-label="Principal" aria-hidden="true">
-    <p class="nav-drawer-title">
-      <span class="es">Menú</span>
-      <span class="en">Menu</span>
-      <span class="pt">Menu</span>
-    </p>
+    <a class="logo nav-sidebar-logo" href="#inicio">Lara Minaverry</a>
     <a href="#inicio">
       <span class="es">Inicio</span>
       <span class="en">Home</span>
@@ -214,6 +171,44 @@
     </a>
     <a href="./cv.html">CV</a>
   </nav>
+
+  <div class="site-shell">
+  <header class="site-header">
+    <div class="nav-wrap">
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
+        <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro">
+          <span class="es theme-to-dark">Oscuro</span>
+          <span class="en theme-to-dark">Dark</span>
+          <span class="pt theme-to-dark">Escuro</span>
+          <span class="es theme-to-light">Claro</span>
+          <span class="en theme-to-light">Light</span>
+          <span class="pt theme-to-light">Claro</span>
+        </button>
+        <div class="lang-switch" role="group" aria-labelledby="lang-switch-label">
+          <span id="lang-switch-label" class="visually-hidden">
+            <span class="es">Idioma</span>
+            <span class="en">Language</span>
+            <span class="pt">Idioma</span>
+          </span>
+          <button type="button" class="lang-btn" data-lang="es" aria-pressed="true" aria-label="Español">
+            <svg class="flag" viewBox="0 0 16 11" aria-hidden="true"><rect width="16" height="11" fill="#74ACDF"/><rect y="3.67" width="16" height="3.66" fill="#fff"/><circle cx="8" cy="5.5" r="1.15" fill="#F6B40E"/></svg>
+            <span class="lang-code">ES</span>
+          </button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">
+            <svg class="flag" viewBox="0 0 16 11" aria-hidden="true"><rect width="16" height="11" fill="#012169"/><rect x="6.6" width="2.8" height="11" fill="#fff"/><rect y="4.1" width="16" height="2.8" fill="#fff"/><rect x="7.1" width="1.8" height="11" fill="#C8102E"/><rect y="4.6" width="16" height="1.8" fill="#C8102E"/></svg>
+            <span class="lang-code">EN</span>
+          </button>
+          <button type="button" class="lang-btn" data-lang="pt" aria-pressed="false" aria-label="Português">
+            <svg class="flag" viewBox="0 0 16 11" aria-hidden="true"><rect width="16" height="11" fill="#009B3A"/><polygon points="8,1.2 14.8,5.5 8,9.8 1.2,5.5" fill="#FEDD00"/><circle cx="8" cy="5.5" r="1.85" fill="#002776"/></svg>
+            <span class="lang-code">PT</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <main id="contenido">
     <section class="top-videos" aria-label="Videos principales">
@@ -1499,6 +1494,7 @@
       </div>
     </div>
   </footer>
+  </div>
   <script src="./js/video-library.js"></script>
   <script src="./js/main.js"></script>
 </body>
