@@ -353,7 +353,78 @@ button.btn {
 }
 
 .quotes {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.quote a {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.skill-from-social {
+  margin: 0 0 22px;
+}
+
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 180px;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--elev), var(--bg-2));
+  color: var(--text);
+  text-decoration: none;
+}
+
+.tile strong {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--cyan);
+}
+
+.tile em {
+  margin-top: auto;
+  font-style: normal;
+  color: var(--gold);
+  font-size: 0.82rem;
+}
+
+.footer-label {
+  margin: 0 0 12px;
+  color: var(--soft);
+}
+
+.company-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.company-bar a,
+.company-bar span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  background: var(--elev);
+}
+
+.company-bar a:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
 }
 
 .quote p {
@@ -464,12 +535,19 @@ footer {
   border: 0;
 }
 
+@media (max-width: 1100px) {
+  .mosaic {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .hero,
   .grid-2,
   .proof,
   .work-grid,
   .quotes,
+  .mosaic,
   .skills,
   .edu-grid,
   .contact-box {
