@@ -25,7 +25,7 @@
   <link rel="alternate" hreflang="en" href="https://gabrielalejandroarroyo.github.io/lara-minaverry-portfolio/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,600&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css">
   <script>
     (function () {
@@ -112,6 +112,14 @@
           <span class="es">Impacto</span>
           <span class="en">Impact</span>
         </a>
+        <a href="#trabajo">
+          <span class="es">Proyectos</span>
+          <span class="en">Projects</span>
+        </a>
+        <a href="#videos">
+          <span class="es">Videos</span>
+          <span class="en">Videos</span>
+        </a>
         <a href="#referencias">
           <span class="es">Referencias</span>
           <span class="en">References</span>
@@ -142,14 +150,19 @@
   <main id="contenido">
     <section class="hero" id="inicio">
       <div class="hero-inner">
+        <p class="kicker">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="es">Open to work · Buenos Aires · híbrido · remoto</span>
+          <span class="en">Open to work · Buenos Aires · hybrid · remote</span>
+        </p>
         <h1>Lara Minaverry</h1>
         <p class="headline">
           <span class="es">Hace que hackathones y simulaciones entreguen producto.</span>
           <span class="en">She makes hackathons and simulations ship product.</span>
         </p>
         <p class="hero-copy">
-          <span class="es">Coordinadora de operaciones tech y Team Leader. Hoy en No Country. Open to work: Buenos Aires, híbrido o remoto.</span>
-          <span class="en">Tech operations coordinator and Team Leader. Now at No Country. Open to work: Buenos Aires, hybrid or remote.</span>
+          <span class="es">Coordinadora de operaciones tech y Team Leader en No Country. 25 años de trayectoria. Español, inglés y portugués.</span>
+          <span class="en">Tech operations coordinator and Team Leader at No Country. 25 years of experience. Spanish, English, and Portuguese.</span>
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://www.linkedin.com/in/lara-minaverry/" rel="noopener noreferrer" target="_blank">
@@ -160,11 +173,14 @@
             <span class="es">CV para ATS</span>
             <span class="en">ATS résumé</span>
           </a>
+          <a class="btn btn-ghost" href="#videos">
+            <span class="es">Ver videos</span>
+            <span class="en">Watch videos</span>
+          </a>
         </div>
       </div>
-      <div class="hero-plane">
-        <!-- PLACEHOLDER_PHOTO: reemplazá assets/avatar.svg por assets/lara.jpg y actualizá el src -->
-        <img src="./assets/avatar.svg" width="400" height="640" alt="Lara Minaverry, Coordinadora de Operaciones Tech y Team Leader">
+      <div class="portrait">
+        <img src="./assets/avatar.svg" width="400" height="400" alt="Lara Minaverry, Coordinadora de Operaciones Tech y Team Leader">
       </div>
     </section>
 
@@ -264,6 +280,8 @@
         <ul class="project-chips">
           <li>MedicGuard</li>
           <li>Union Wallet</li>
+          <li>Twelve Finance</li>
+          <li>Nutrimarket</li>
           <li>Popmart / Pet Rescue</li>
           <li>Oracle ONE</li>
         </ul>
@@ -399,8 +417,26 @@
         <span class="es">Operación, liderazgo y productos entregados en sprints públicos.</span>
         <span class="en">Operations, leadership, and products shipped in public sprints.</span>
       </p>
+      <div class="filters" role="group" aria-label="Filtro de trabajo">
+        <button type="button" data-filter="all" class="is-on" aria-pressed="true">
+          <span class="es">Todo</span>
+          <span class="en">All</span>
+        </button>
+        <button type="button" data-filter="ops" aria-pressed="false">
+          <span class="es">Operación</span>
+          <span class="en">Operations</span>
+        </button>
+        <button type="button" data-filter="lead" aria-pressed="false">
+          <span class="es">Liderazgo</span>
+          <span class="en">Leadership</span>
+        </button>
+        <button type="button" data-filter="product" aria-pressed="false">
+          <span class="es">Productos</span>
+          <span class="en">Products</span>
+        </button>
+      </div>
       <div class="work-list">
-        <article class="work-row">
+        <article class="work-row" data-kind="ops">
           <p class="meta">No Country · Coordinadora de operaciones · may. 2024 – actualidad</p>
           <h3>
             <span class="es">Operaciones de simulaciones y hackathones</span>
@@ -411,8 +447,7 @@
             <span class="en">She forms teams, manages dropouts and replacements, runs the operation, moderates Demo Days, and supports participants in a remote program.</span>
           </p>
         </article>
-        <article class="work-row">
-          <p class="meta">No Country · ene. 2024 – abr. 2025</p>
+        <article class="work-row" data-kind="lead">
           <h3>
             <span class="es">Team Leader Embajadora</span>
             <span class="en">Ambassador Team Leader</span>
@@ -422,7 +457,7 @@
             <span class="en">She leads multidisciplinary web and app teams: organizes members, develops soft skills, and resolves conflict.</span>
           </p>
         </article>
-        <article class="work-row">
+        <article class="work-row" data-kind="ops">
           <p class="meta">No Country · Alura · Oracle</p>
           <h3>Hackathon Oracle Next Education</h3>
           <p>
@@ -430,7 +465,7 @@
             <span class="en">No Country’s CEO names her in the team that runs ONE hackathon operations.</span>
           </p>
         </article>
-        <article class="work-row">
+        <article class="work-row" data-kind="product">
           <p class="meta">Simulación laboral · Team Leader · c16-51-t-java</p>
           <h3>MedicGuard</h3>
           <p>
@@ -438,7 +473,7 @@
             <span class="en">An app to assign mental-health shifts. A 5-week cycle.</span>
           </p>
         </article>
-        <article class="work-row">
+        <article class="work-row" data-kind="product">
           <p class="meta">Simulación laboral · Team Leader · billetera virtual MVP</p>
           <h3>Union Wallet</h3>
           <p>
@@ -446,7 +481,31 @@
             <span class="en">A virtual wallet for simple transfers. The team credited her guidance on LinkedIn as essential to the MVP.</span>
           </p>
         </article>
-        <article class="work-row">
+        <article class="work-row" data-kind="product">
+          <p class="meta">Simulación laboral · Team Leader · c17-12-t-node-react</p>
+          <h3>Twelve Finance</h3>
+          <p>
+            <span class="es">Plataforma de banca digital. El equipo la cita como líder: “especial reconocimiento a nuestra líder, Lara Minaverry.”</span>
+            <span class="en">A digital banking platform. The team cites her as leader: “special recognition to our leader, Lara Minaverry.”</span>
+          </p>
+        </article>
+        <article class="work-row" data-kind="product">
+          <p class="meta">Simulación laboral · Team Leader · ecommerce saludable</p>
+          <h3>Nutrimarket</h3>
+          <p>
+            <span class="es">Ecommerce saludable. El equipo publicó el deploy y un video de presentación, citando su liderazgo como TL.</span>
+            <span class="en">A healthy-food ecommerce. The team published the deploy and a pitch video, citing her as TL.</span>
+          </p>
+        </article>
+        <article class="work-row" data-kind="lead">
+          <p class="meta">Simulación laboral · orientación a TLs · Popmart y Pet Rescue</p>
+          <h3>Popmart / Pet Rescue</h3>
+          <p>
+            <span class="es">Gloria Nabor agradece su orientación mientras los equipos de Desarrollo Web entregaban Popmart y Pet Rescue.</span>
+            <span class="en">Gloria Nabor thanks her guidance while the web teams shipped Popmart and Pet Rescue.</span>
+          </p>
+        </article>
+        <article class="work-row" data-kind="product">
           <p class="meta">HTML · CSS · JavaScript · React · SQL · Bootstrap · GitHub · Bubble · WordPress</p>
           <h3>
             <span class="es">Frontend y No-Code, al servicio de la operación</span>
@@ -457,7 +516,7 @@
             <span class="en">She took part as Team Leader, Frontend, and No-Code. She uses the craft to coordinate product work better.</span>
           </p>
         </article>
-        <article class="work-row">
+        <article class="work-row" data-kind="ops">
           <p class="meta">Cambio Belgrano · Aranxa Ecomm</p>
           <h3>
             <span class="es">Sucursal y asistencia de dirección</span>
@@ -468,6 +527,87 @@
             <span class="en">She managed an FX branch with four cashboxes, Pago Fácil, and Western Union. Earlier, she supported a general manager in e-commerce, with three sales people in her charge.</span>
           </p>
         </article>
+      </div>
+    </section>
+
+    </section>
+
+    <section class="wrap section" id="videos">
+      <h2>
+        <span class="es">Videos y Demo Days</span>
+        <span class="en">Videos and Demo Days</span>
+      </h2>
+      <p class="lead">
+        <span class="es">Mismo formato, sin fondos que estiren la página. No hay canal de YouTube a su nombre: estos son los videos y relatos públicos de participación.</span>
+        <span class="en">Same format, no page-stretching backgrounds. There is no YouTube channel in her name: these are the public participation videos and recaps.</span>
+      </p>
+      <div class="media-grid">
+        <a class="media-card" href="https://www.linkedin.com/posts/leandrobuzeta_demo-day-del-hackathon-one-lo-vivido-activity-7376243141173055488-gp12" rel="noopener noreferrer" target="_blank">
+          <div class="media-frame" aria-hidden="true"><span class="play"></span></div>
+          <div class="body">
+            <strong>Demo Day · Hackathon ONE</strong>
+            <p>
+              <span class="es">Lara en el equipo que sostiene la operación. Relato y video en LinkedIn.</span>
+              <span class="en">Lara on the operations team. Recap and video on LinkedIn.</span>
+            </p>
+            <span class="rx">Leandro Buzeta · LinkedIn</span>
+          </div>
+        </a>
+        <a class="media-card" href="https://es.linkedin.com/posts/leonardo-manuel-tolaba_nutrimarket-activity-7171969338957139968-Vj6v" rel="noopener noreferrer" target="_blank">
+          <div class="media-frame" aria-hidden="true"><span class="play"></span></div>
+          <div class="body">
+            <strong>Pitch · Nutrimarket</strong>
+            <p>
+              <span class="es">Presentación del ecommerce. El post cita su liderazgo como Team Leader.</span>
+              <span class="en">Ecommerce pitch. The post cites her Team Leader role.</span>
+            </p>
+            <span class="rx">Leonardo Tolaba · LinkedIn</span>
+          </div>
+        </a>
+        <a class="media-card" href="https://www.linkedin.com/posts/nocountrytalent_testimonios-hackathon-one-activity-7388972037945344000-w9BM" rel="noopener noreferrer" target="_blank">
+          <div class="media-frame" aria-hidden="true"><span class="play"></span></div>
+          <div class="body">
+            <strong>Testimonios · Hackathon One</strong>
+            <p>
+              <span class="es">No Country, Alura y Oracle. Talento en acción.</span>
+              <span class="en">No Country, Alura, and Oracle. Talent in action.</span>
+            </p>
+            <span class="rx">36 reacciones</span>
+          </div>
+        </a>
+        <a class="media-card" href="https://www.linkedin.com/posts/leandrobuzeta_hackathonone-simulacionlaboral-activity-7423051481609789440-6c-J" rel="noopener noreferrer" target="_blank">
+          <div class="media-frame" aria-hidden="true"><span class="play"></span></div>
+          <div class="body">
+            <strong>Cierre · Hackathon Latam</strong>
+            <p>
+              <span class="es">El CEO la nombra en el equipo operativo del hackathon más grande de Latam.</span>
+              <span class="en">The CEO names her on the ops team of Latam’s largest hackathon.</span>
+            </p>
+            <span class="rx">72 reacciones</span>
+          </div>
+        </a>
+        <a class="media-card" href="https://www.linkedin.com/posts/leticiabohrer_o-hackathon-brasil-one-g9-come%C3%A7ou-activity-7477884859479322624-IS2M" rel="noopener noreferrer" target="_blank">
+          <div class="media-frame" aria-hidden="true"><span class="play"></span></div>
+          <div class="body">
+            <strong>Kickoff · ONE G9 Brasil</strong>
+            <p>
+              <span class="es">Letícia Bohrer la nombra junto a Oracle, Alura y No Country.</span>
+              <span class="en">Letícia Bohrer names her with Oracle, Alura, and No Country.</span>
+            </p>
+            <span class="rx">69 reacciones · 2 shares</span>
+          </div>
+        </a>
+        <a class="media-card" href="https://es.linkedin.com/posts/julia-daniela-rodriguez_nocountry-activity-7421876830359408641-1PIu" rel="noopener noreferrer" target="_blank">
+          <div class="media-frame" aria-hidden="true"><span class="play"></span></div>
+          <div class="body">
+            <strong>Demo Day · jurado ONE</strong>
+            <p>
+              <span class="es">Agradecimiento por el acompañamiento en Discord durante el Demo Day.</span>
+              <span class="en">Thanks for Discord support during Demo Day.</span>
+            </p>
+            <span class="rx">33 reacciones</span>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -487,7 +627,7 @@
             <span class="es">“Agradezco a Lara Minaverry, que fue mi gran mentora… ella me guió y me explicó cómo ser una excelente Team Leader.”</span>
             <span class="en">“I thank Lara Minaverry, who was my great mentor… she guided me and explained how to be an excellent Team Leader.”</span>
           </p>
-          <cite>Julieta Mores · Team Leader en No Country</cite>
+          <cite>Julieta Mores · Team Leader en No Country · 48 reacciones</cite>
           <a href="https://www.linkedin.com/posts/julieta-mores_feliz-teamleader-nocountry-activity-7227458369584828416-GH7T" rel="noopener noreferrer" target="_blank">Ver en LinkedIn</a>
         </blockquote>
         <blockquote class="quote-feature">
@@ -505,6 +645,14 @@
           </p>
           <cite>Orlibet Dun · jurado Demo Day Hackathon ONE</cite>
           <a href="https://www.linkedin.com/posts/orlibetdungonzalez_one-porunmillondeamigos-makeyourselfvisible-activity-7422254398161981440-el7b" rel="noopener noreferrer" target="_blank">Ver en LinkedIn</a>
+        </blockquote>
+        <blockquote class="quote-feature">
+          <p>
+            <span class="es">“Quiero expresar mi más sincero agradecimiento a todo el equipo, con especial reconocimiento a nuestra líder, Lara Minaverry.”</span>
+            <span class="en">“I want to express my sincere thanks to the whole team, with special recognition to our leader, Lara Minaverry.”</span>
+          </p>
+          <cite>Arturo Prado · Twelve Finance · No Country</cite>
+          <a href="https://es.linkedin.com/posts/arturpra_fintech-twelvefinance-twelvefinance-activity-7189815742568009728-cotO" rel="noopener noreferrer" target="_blank">Ver en LinkedIn</a>
         </blockquote>
       </div>
 
@@ -530,7 +678,7 @@
             <span class="es">“Agradecer a Lara Minaverry por siempre estar presente guiándonos para seguir mejorando en este rol.”</span>
             <span class="en">“Thanks to Lara Minaverry for always being there, guiding us to keep improving in this role.”</span>
           </p>
-          <cite>Mikhail Ivan Garcilano · Team Leader · No Country</cite>
+          <cite>Mikhail Ivan Garcilano · Team Leader · No Country · 41 reacciones</cite>
           <a href="https://www.linkedin.com/posts/mikhailgarcilano_que-alegria-tener-este-reconocimiento-por-activity-7209648437695283200-XXsY" rel="noopener noreferrer" target="_blank">Ver en LinkedIn</a>
         </blockquote>
         <blockquote class="quote-line">
@@ -538,8 +686,24 @@
             <span class="es">El CEO de No Country la nombra en el equipo que sostiene la operación del Hackathon Oracle Next Education, junto a Alura y Oracle.</span>
             <span class="en">The CEO of No Country names her in the team that runs Oracle Next Education Hackathon operations, with Alura and Oracle.</span>
           </p>
-          <cite>Leandro Buzeta Bernasconi · Founder &amp; CEO, No Country</cite>
+          <cite>Leandro Buzeta Bernasconi · Founder &amp; CEO, No Country · 22 reacciones</cite>
           <a href="https://www.linkedin.com/posts/leandrobuzeta_hackathonoraclenexteducation-nocountry-activity-7478159875097649152-KSkL" rel="noopener noreferrer" target="_blank">Ver en LinkedIn</a>
+        </blockquote>
+        <blockquote class="quote-line">
+          <p>
+            <span class="es">Team Leader del equipo c16-51-t-java que construyó MedicGuard, app para asignar guardias en salud mental.</span>
+            <span class="en">Team Leader of cohort c16-51-t-java, which built MedicGuard, an app to assign mental-health shifts.</span>
+          </p>
+          <cite>Mariano Juarez Magariños · MedicGuard · No Country</cite>
+          <a href="https://es.linkedin.com/posts/majuarezmagarinos_trabajoenequipo-desaf%C3%ADossuperados-experienciaprofesional-activity-7174170417845125122-Xigs" rel="noopener noreferrer" target="_blank">Ver en LinkedIn</a>
+        </blockquote>
+        <blockquote class="quote-line">
+          <p>
+            <span class="es">“Lara Minaverry, Leti Farias y Roberta Granzzotto, por el acompañamiento constante en Discord.”</span>
+            <span class="en">“Lara Minaverry, Leti Farias, and Roberta Granzzotto, for constant support on Discord.”</span>
+          </p>
+          <cite>Julia Daniela Rodriguez · jurado Demo Day ONE · 33 reacciones</cite>
+          <a href="https://es.linkedin.com/posts/julia-daniela-rodriguez_nocountry-activity-7421876830359408641-1PIu" rel="noopener noreferrer" target="_blank">Ver en LinkedIn</a>
         </blockquote>
       </div>
     </section>

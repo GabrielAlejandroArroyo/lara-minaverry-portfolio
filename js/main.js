@@ -134,6 +134,42 @@ function animateCount(el) {
   requestAnimationFrame(tick);
 }
 
+const sections = ["inicio", "sobre", "impacto", "trabajo", "videos", "referencias", "redes", "contacto"];
+const navAnchors = navLinks?.querySelectorAll('a[href^="#"]') || [];
+
+function syncNav() {
+  let current = "inicio";
+  sections.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 120) {
+      current = id;
+    }
+  });
+  navAnchors.forEach((link) => {
+    link.classList.toggle("is-active", link.getAttribute("href") === `#${current}`);
+  });
+}
+
+window.addEventListener("scroll", syncNav, { passive: true });
+syncNav();
+
+const filterBar = document.querySelector(".filters");
+if (filterBar) {
+  const rows = document.querySelectorAll(".work-row[data-kind]");
+  filterBar.addEventListener("click", (event) => {
+    const btn = event.target.closest("button[data-filter]");
+    if (!btn) return;
+    const kind = btn.dataset.filter;
+    filterBar.querySelectorAll("button").forEach((item) => {
+      item.setAttribute("aria-pressed", String(item === btn));
+      item.classList.toggle("is-on", item === btn);
+    });
+    rows.forEach((row) => {
+      row.hidden = kind !== "all" && row.dataset.kind !== kind;
+    });
+  });
+}
+
 const impacto = document.getElementById("impacto");
 if (impacto) {
   const counters = impacto.querySelectorAll("[data-count]");

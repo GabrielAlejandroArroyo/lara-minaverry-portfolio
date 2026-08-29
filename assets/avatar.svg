@@ -1,14 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 640" role="img" aria-labelledby="title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title">
   <title id="title">Monograma de Lara Minaverry — reemplazar por foto en assets/lara.jpg</title>
-  <defs>
-    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#c9d8d7"/>
-      <stop offset="55%" stop-color="#9eb8b6"/>
-      <stop offset="100%" stop-color="#6d8f8c"/>
-    </linearGradient>
-  </defs>
-  <rect width="400" height="640" fill="url(#paper)"/>
-  <text x="36" y="86" font-family="Georgia, serif" font-size="18" letter-spacing="3" fill="#0a4f4b">OPS · TL · LATAM</text>
-  <text x="28" y="340" font-family="Georgia, serif" font-style="italic" font-size="210" fill="#152028">LM</text>
-  <text x="36" y="580" font-family="Georgia, serif" font-size="22" fill="#152028">No Country</text>
+  <rect width="400" height="400" fill="#e8eeef"/>
+  <text x="200" y="248" text-anchor="middle" font-family="Georgia, serif" font-size="128" fill="#115e59">LM</text>
 </svg>
