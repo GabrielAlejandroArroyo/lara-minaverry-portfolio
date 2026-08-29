@@ -276,17 +276,20 @@ a {
 }
 
 .flag {
-  width: 16px;
-  height: 11px;
+  width: 18px;
+  height: 12px;
   border-radius: 2px;
   flex-shrink: 0;
   display: block;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18);
   overflow: hidden;
 }
 
 .lang-code {
   font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
 }
 
 .hamburger {
