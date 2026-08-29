@@ -112,26 +112,61 @@ function setCountValue(el, value) {
   el.textContent = `${value}${suffix}`;
 }
 
-function animateCount(el) {
-  const target = Number(el.dataset.count || 0);
-  if (prefersReducedMotion) {
-    setCountValue(el, target);
-    return;
+function yearsFrom(isoDate) {
+  const start = new Date(`${isoDate}T00:00:00`);
+  const now = new Date();
+  let years = now.getFullYear() - start.getFullYear();
+  const beforeAnniversary =
+    now.getMonth() < start.getMonth() ||
+    (now.getMonth() === start.getMonth() && now.getDate() < start.getDate());
+  if (beforeAnniversary) years -= 1;
+  return Math.max(0, years);
+}
+
+function monthsFrom(isoDate) {
+  const start = new Date(`${isoDate}T00:00:00`);
+  const now = new Date();
+  return (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+}
+
+const IMPACT = {
+  careerYears: 25,
+  noCountryStart: "2023-04-01",
+  languages: 3,
+  linkedinFollowers: 414,
+  linkedinContacts: 298,
+};
+
+function applyImpactStats() {
+  const noCountryYears = yearsFrom(IMPACT.noCountryStart);
+  const noCountryEl = document.querySelector('[data-stat="nocountry"]');
+  if (noCountryEl) {
+    noCountryEl.dataset.count = String(noCountryYears);
+    noCountryEl.dataset.suffix = monthsFrom(IMPACT.noCountryStart) % 12 === 0 ? "" : "+";
   }
 
-  const duration = 1100;
-  const start = performance.now();
+  const careerEl = document.querySelector('[data-stat="career"]');
+  if (careerEl) careerEl.dataset.count = String(IMPACT.careerYears);
 
-  function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    setCountValue(el, Math.round(target * eased));
-    if (progress < 1) {
-      requestAnimationFrame(tick);
-    }
+  const languagesEl = document.querySelector('[data-stat="languages"]');
+  if (languagesEl) languagesEl.dataset.count = String(IMPACT.languages);
+
+  const followersEl = document.querySelector('[data-stat="followers"]');
+  if (followersEl) followersEl.dataset.count = String(IMPACT.linkedinFollowers);
+
+  const contactsEl = document.querySelector('[data-stat="contacts"]');
+  if (contactsEl) contactsEl.dataset.count = String(IMPACT.linkedinContacts);
+
+  const referencesEl = document.querySelector('[data-stat="references"]');
+  if (referencesEl) {
+    const published = document.querySelectorAll("#referencias blockquote").length;
+    referencesEl.dataset.count = String(published);
   }
+}
 
-  requestAnimationFrame(tick);
+function isInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight * 0.92 && rect.bottom > 80;
 }
 
 const sections = ["inicio", "sobre", "impacto", "trabajo", "videos", "referencias", "redes", "contacto"];
@@ -172,23 +207,30 @@ if (filterBar) {
 
 const impacto = document.getElementById("impacto");
 if (impacto) {
+  applyImpactStats();
   const counters = impacto.querySelectorAll("[data-count]");
+  counters.forEach((el) => setCountValue(el, Number(el.dataset.count || 0)));
 
-  if (prefersReducedMotion) {
+  const revealImpact = () => {
     impacto.classList.add("is-in");
-    counters.forEach((el) => setCountValue(el, Number(el.dataset.count || 0)));
-  } else {
+  };
+
+  if (prefersReducedMotion || isInViewport(impacto)) {
+    revealImpact();
+  } else if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          impacto.classList.add("is-in");
-          counters.forEach((el) => animateCount(el));
+          revealImpact();
           observer.disconnect();
         });
       },
-      { threshold: 0.28 }
+      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
     );
     observer.observe(impacto);
+    window.setTimeout(revealImpact, 1800);
+  } else {
+    revealImpact();
   }
 }
