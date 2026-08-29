@@ -7,15 +7,28 @@ const SITE = {
 };
 
 const html = document.documentElement;
-const langBtn = document.getElementById("lang-toggle");
 const themeBtn = document.getElementById("theme-toggle");
+const langBtns = document.querySelectorAll("[data-lang]");
 const menuBtn = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
+const navBackdrop = document.getElementById("nav-backdrop");
 const yearEl = document.getElementById("year");
 const form = document.getElementById("contact-form");
 const emailLinks = document.querySelectorAll("[data-email-link]");
 const githubLinks = document.querySelectorAll("[data-github-link]");
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const LANGS = ["es", "en", "pt"];
+const THEME_LABELS = {
+  es: { toLight: "Cambiar a modo claro", toDark: "Cambiar a modo oscuro" },
+  en: { toLight: "Switch to light mode", toDark: "Switch to dark mode" },
+  pt: { toLight: "Mudar para o modo claro", toDark: "Mudar para o modo escuro" },
+};
+const MENU_LABELS = {
+  es: { open: "Abrir menú", close: "Cerrar menú" },
+  en: { open: "Open menu", close: "Close menu" },
+  pt: { open: "Abrir menu", close: "Fechar menu" },
+};
 
 const hasEmail = SITE.email && SITE.email !== "CONTACT_EMAIL" && SITE.email.includes("@");
 const hasGithub = SITE.github && SITE.github !== "CONTACT_GITHUB" && SITE.github.startsWith("http");
@@ -24,53 +37,106 @@ if (yearEl) {
   yearEl.textContent = String(new Date().getFullYear());
 }
 
-function setLang(lang) {
-  html.lang = lang;
-  localStorage.setItem("lm-lang", lang);
-  if (langBtn) {
-    langBtn.textContent = lang === "es" ? "EN" : "ES";
-    langBtn.setAttribute("aria-label", lang === "es" ? "Switch to English" : "Cambiar a español");
+function readStore(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
   }
 }
 
-const savedLang = localStorage.getItem("lm-lang");
-if (savedLang === "en" || savedLang === "es") {
-  setLang(savedLang);
+function writeStore(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    /* ignore quota / private mode */
+  }
 }
 
-langBtn?.addEventListener("click", () => {
-  setLang(html.lang === "es" ? "en" : "es");
-});
+function currentLang() {
+  return LANGS.includes(html.lang) ? html.lang : "es";
+}
+
+function syncChrome() {
+  const lang = currentLang();
+  langBtns.forEach((btn) => {
+    btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
+  });
+  if (themeBtn) {
+    const toLight = html.getAttribute("data-theme") === "dark";
+    const labels = THEME_LABELS[lang];
+    themeBtn.setAttribute("aria-label", toLight ? labels.toLight : labels.toDark);
+  }
+  if (menuBtn) {
+    const isOpen = Boolean(navLinks?.classList.contains("open"));
+    const labels = MENU_LABELS[lang];
+    menuBtn.setAttribute("aria-label", isOpen ? labels.close : labels.open);
+  }
+}
+
+function setLang(lang) {
+  if (!LANGS.includes(lang)) return;
+  html.lang = lang;
+  writeStore("lm-lang", lang);
+  syncChrome();
+}
 
 function setTheme(theme) {
-  html.setAttribute("data-theme", theme);
-  localStorage.setItem("lm-theme", theme);
-  if (themeBtn) {
-    const toLight = theme === "dark";
-    themeBtn.setAttribute(
-      "aria-label",
-      html.lang === "en"
-        ? (toLight ? "Switch to light mode" : "Switch to dark mode")
-        : (toLight ? "Cambiar a modo claro" : "Cambiar a modo oscuro")
-    );
-  }
+  const next = theme === "dark" ? "dark" : "light";
+  html.setAttribute("data-theme", next);
+  writeStore("lm-theme", next);
+  syncChrome();
 }
 
-const currentTheme = html.getAttribute("data-theme") === "dark" ? "dark" : "light";
-setTheme(currentTheme);
+function setMenuOpen(isOpen) {
+  navLinks?.classList.toggle("open", isOpen);
+  document.body.classList.toggle("nav-open", isOpen);
+  menuBtn?.setAttribute("aria-expanded", String(isOpen));
+  if (navBackdrop) navBackdrop.hidden = !isOpen;
+  syncChrome();
+}
+
+langBtns.forEach((btn) => {
+  btn.addEventListener("click", () => setLang(btn.dataset.lang));
+});
 
 themeBtn?.addEventListener("click", () => {
-  setTheme(html.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  const isDark = html.getAttribute("data-theme") === "dark";
+  setTheme(isDark ? "light" : "dark");
 });
 
 menuBtn?.addEventListener("click", () => {
-  const isOpen = navLinks.classList.toggle("open");
-  menuBtn.setAttribute("aria-expanded", String(isOpen));
+  const isOpen = !navLinks?.classList.contains("open");
+  setMenuOpen(isOpen);
 });
 
+navBackdrop?.addEventListener("click", () => setMenuOpen(false));
+
 navLinks?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => navLinks.classList.remove("open"));
+  link.addEventListener("click", () => setMenuOpen(false));
 });
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setMenuOpen(false);
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1080) setMenuOpen(false);
+});
+
+const savedLang = readStore("lm-lang");
+if (LANGS.includes(savedLang)) {
+  setLang(savedLang);
+} else {
+  syncChrome();
+}
+
+const savedTheme = readStore("lm-theme");
+if (savedTheme === "dark" || savedTheme === "light") {
+  setTheme(savedTheme);
+} else {
+  syncChrome();
+}
 
 emailLinks.forEach((el) => {
   if (hasEmail) {
@@ -215,7 +281,7 @@ if (impacto) {
     impacto.classList.add("is-in");
   };
 
-  if (prefersReducedMotion || isInViewport(impacto)) {
+  if (reduceMotion || isInViewport(impacto)) {
     revealImpact();
   } else if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
