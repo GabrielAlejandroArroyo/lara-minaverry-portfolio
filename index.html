@@ -115,37 +115,60 @@
   <nav id="nav-links" class="nav-links" aria-label="Principal" aria-hidden="true">
     <div class="nav-menu-head">
       <div class="nav-actions">
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro">
-          <svg class="theme-icon theme-to-dark" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 7 7 0 0 0 20 14.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-          </svg>
-          <svg class="theme-icon theme-to-light" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M12 2.5v1.8M12 19.7v1.8M4.93 4.93l1.27 1.27M17.8 17.8l1.27 1.27M2.5 12h1.8M19.7 12h1.8M4.93 19.07l1.27-1.27M17.8 6.2l1.27-1.27" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </button>
-        <div class="lang-switch" role="group" aria-labelledby="lang-switch-label">
-          <span id="lang-switch-label" class="visually-hidden">
-            <span class="es">Idioma</span>
-            <span class="en">Language</span>
-            <span class="pt">Idioma</span>
+        <div class="theme-switch" role="group" aria-labelledby="theme-switch-label">
+          <span id="theme-switch-label" class="visually-hidden">
+            <span class="es">Apariencia</span>
+            <span class="en">Appearance</span>
+            <span class="pt">Aparência</span>
           </span>
-          <button type="button" class="lang-btn" data-lang="es" aria-pressed="true" aria-label="Español">
-            <span class="lang-mark" aria-hidden="true">á</span>
-            <span class="lang-code">esp</span>
+          <button type="button" class="theme-opt" data-theme-set="light" aria-pressed="true" aria-label="Modo claro">
+            <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 2.5v1.8M12 19.7v1.8M4.93 4.93l1.27 1.27M17.8 17.8l1.27 1.27M2.5 12h1.8M19.7 12h1.8M4.93 19.07l1.27-1.27M17.8 6.2l1.27-1.27" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
           </button>
-          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">
-            <span class="lang-mark" aria-hidden="true">A</span>
-            <span class="lang-code">en</span>
+          <button type="button" class="theme-opt" data-theme-set="dark" aria-pressed="false" aria-label="Modo oscuro">
+            <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 7 7 0 0 0 20 14.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
           </button>
-          <button type="button" class="lang-btn" data-lang="pt" aria-pressed="false" aria-label="Português">
-            <span class="lang-mark" aria-hidden="true">ã</span>
-            <span class="lang-code">pt</span>
+        </div>
+        <div class="lang-dropdown" id="lang-dropdown">
+          <button type="button" class="lang-trigger" id="lang-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="lang-menu" aria-label="Idioma: Español">
+            <svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M3 12h18M12 3c2.4 2.8 3.7 5.8 3.7 9s-1.3 6.2-3.7 9c-2.4-2.8-3.7-5.8-3.7-9s1.3-6.2 3.7-9z" fill="none" stroke="currentColor" stroke-width="1.7"/>
+            </svg>
+            <span class="lang-current" id="lang-current">Español</span>
+            <svg class="lang-caret" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </button>
+          <ul class="lang-menu" id="lang-menu" role="listbox" aria-labelledby="lang-trigger" hidden>
+            <li>
+              <button type="button" role="option" lang="es" data-lang="es" aria-selected="true">
+                <span class="lang-name">Español</span>
+                <span class="lang-iso">ES</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" role="option" lang="en" data-lang="en" aria-selected="false">
+                <span class="lang-name">English</span>
+                <span class="lang-iso">EN</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" role="option" lang="pt" data-lang="pt" aria-selected="false">
+                <span class="lang-name">Português</span>
+                <span class="lang-iso">PT</span>
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
       <a class="logo nav-sidebar-logo" href="#inicio">Lara Minaverry</a>
     </div>
+    <div class="nav-links-scroll">
     <a href="#inicio">
       <span class="es">Inicio</span>
       <span class="en">Home</span>
@@ -202,6 +225,7 @@
       <span class="pt">Contato</span>
     </a>
     <a href="./assets/Mi-CV.pdf" download="Mi CV.pdf">CV</a>
+    </div>
   </nav>
 
   <div class="site-shell">
@@ -214,75 +238,6 @@
   </header>
 
   <main id="contenido">
-    <section class="top-videos" aria-label="Videos principales">
-      <div class="wrap">
-        <p class="kicker">
-          <span class="es">Tres piezas con más señal pública · preview 20s</span>
-          <span class="en">Three pieces with the strongest public signal · 20s preview</span>
-            <span class="pt">Três peças com mais sinal público · preview 20s</span>
-        </p>
-        <div class="media-grid">
-          <a class="media-card" href="https://www.linkedin.com/posts/leandrobuzeta_hackathonone-simulacionlaboral-activity-7423051481609789440-6c-J" rel="noopener noreferrer" target="_blank">
-            <div class="media-frame" data-preview="cierre-latam">
-              <span class="play"></span>
-              <span class="preview-bar" aria-hidden="true"><i></i></span>
-            </div>
-            <div class="body">
-              <strong>Cierre · Hackathon Latam</strong>
-              <p>
-                <span class="es">El CEO la nombra en el equipo operativo.</span>
-                <span class="en">The CEO names her on the ops team.</span>
-            <span class="pt">O CEO a nomeia na equipe operacional.</span>
-              </p>
-              <span class="rx">
-                <span class="es">72 reacciones</span>
-                <span class="en">72 reactions</span>
-            <span class="pt">72 reações</span>
-              </span>
-            </div>
-          </a>
-          <a class="media-card" href="https://www.linkedin.com/posts/leticiabohrer_o-hackathon-brasil-one-g9-come%C3%A7ou-activity-7477884859479322624-IS2M" rel="noopener noreferrer" target="_blank">
-            <div class="media-frame" data-preview="kickoff-g9">
-              <span class="play"></span>
-              <span class="preview-bar" aria-hidden="true"><i></i></span>
-            </div>
-            <div class="body">
-              <strong>Kickoff · ONE G9 Brasil</strong>
-              <p>
-                <span class="es">Letícia Bohrer la nombra con Oracle y Alura.</span>
-                <span class="en">Letícia Bohrer names her with Oracle and Alura.</span>
-            <span class="pt">Letícia Bohrer a nomeia com Oracle e Alura.</span>
-              </p>
-              <span class="rx">
-                <span class="es">69 reacciones</span>
-                <span class="en">69 reactions</span>
-            <span class="pt">69 reações</span>
-              </span>
-            </div>
-          </a>
-          <a class="media-card" href="https://www.linkedin.com/posts/leandrobuzeta_demo-day-del-hackathon-one-lo-vivido-activity-7376243141173055488-gp12" rel="noopener noreferrer" target="_blank">
-            <div class="media-frame" data-preview="demo-day-one">
-              <span class="play"></span>
-              <span class="preview-bar" aria-hidden="true"><i></i></span>
-            </div>
-            <div class="body">
-              <strong>Demo Day · Hackathon ONE</strong>
-              <p>
-                <span class="es">Video y relato de la operación.</span>
-                <span class="en">Operations video and recap.</span>
-            <span class="pt">Vídeo e relato da operação.</span>
-              </p>
-              <span class="rx">
-                <span class="es">Video en LinkedIn</span>
-                <span class="en">Video on LinkedIn</span>
-            <span class="pt">Vídeo no LinkedIn</span>
-              </span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
     <section class="hero" id="inicio">
       <div class="hero-inner">
         <p class="kicker">
@@ -438,6 +393,101 @@
           <li>Popmart / Pet Rescue</li>
           <li>Oracle ONE</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section featured-videos" aria-label="Videos principales">
+      <div class="wrap">
+        <div class="video-gallery" data-gallery>
+          <div class="gallery-head">
+            <p class="kicker">
+              <span class="es">Tres piezas con más señal pública · preview 20s</span>
+              <span class="en">Three pieces with the strongest public signal · 20s preview</span>
+              <span class="pt">Três peças com mais sinal público · preview 20s</span>
+            </p>
+            <div class="gallery-controls">
+              <button class="gallery-nav gallery-prev" type="button">
+                <span class="visually-hidden">
+                  <span class="es">Videos anteriores</span>
+                  <span class="en">Previous videos</span>
+                  <span class="pt">Vídeos anteriores</span>
+                </span>
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button class="gallery-nav gallery-next" type="button">
+                <span class="visually-hidden">
+                  <span class="es">Videos siguientes</span>
+                  <span class="en">Next videos</span>
+                  <span class="pt">Próximos vídeos</span>
+                </span>
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="video-gallery-track">
+            <a class="media-card" href="https://www.linkedin.com/posts/leandrobuzeta_hackathonone-simulacionlaboral-activity-7423051481609789440-6c-J" rel="noopener noreferrer" target="_blank">
+              <div class="media-frame" data-preview="cierre-latam">
+                <span class="play"></span>
+                <span class="preview-bar" aria-hidden="true"><i></i></span>
+              </div>
+              <div class="body">
+                <strong>Cierre · Hackathon Latam</strong>
+                <p>
+                  <span class="es">El CEO la nombra en el equipo operativo.</span>
+                  <span class="en">The CEO names her on the ops team.</span>
+                  <span class="pt">O CEO a nomeia na equipe operacional.</span>
+                </p>
+                <span class="rx">
+                  <span class="es">72 reacciones</span>
+                  <span class="en">72 reactions</span>
+                  <span class="pt">72 reações</span>
+                </span>
+              </div>
+            </a>
+            <a class="media-card" href="https://www.linkedin.com/posts/leticiabohrer_o-hackathon-brasil-one-g9-come%C3%A7ou-activity-7477884859479322624-IS2M" rel="noopener noreferrer" target="_blank">
+              <div class="media-frame" data-preview="kickoff-g9">
+                <span class="play"></span>
+                <span class="preview-bar" aria-hidden="true"><i></i></span>
+              </div>
+              <div class="body">
+                <strong>Kickoff · ONE G9 Brasil</strong>
+                <p>
+                  <span class="es">Letícia Bohrer la nombra con Oracle y Alura.</span>
+                  <span class="en">Letícia Bohrer names her with Oracle and Alura.</span>
+                  <span class="pt">Letícia Bohrer a nomeia com Oracle e Alura.</span>
+                </p>
+                <span class="rx">
+                  <span class="es">69 reacciones</span>
+                  <span class="en">69 reactions</span>
+                  <span class="pt">69 reações</span>
+                </span>
+              </div>
+            </a>
+            <a class="media-card" href="https://www.linkedin.com/posts/leandrobuzeta_demo-day-del-hackathon-one-lo-vivido-activity-7376243141173055488-gp12" rel="noopener noreferrer" target="_blank">
+              <div class="media-frame" data-preview="demo-day-one">
+                <span class="play"></span>
+                <span class="preview-bar" aria-hidden="true"><i></i></span>
+              </div>
+              <div class="body">
+                <strong>Demo Day · Hackathon ONE</strong>
+                <p>
+                  <span class="es">Video y relato de la operación.</span>
+                  <span class="en">Operations video and recap.</span>
+                  <span class="pt">Vídeo e relato da operação.</span>
+                </p>
+                <span class="rx">
+                  <span class="es">Video en LinkedIn</span>
+                  <span class="en">Video on LinkedIn</span>
+                  <span class="pt">Vídeo no LinkedIn</span>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1453,39 +1503,80 @@
         <span class="en">Companies and programs</span>
             <span class="pt">Empresas e programas</span>
       </p>
-      <nav class="company-bar" aria-label="Empresas y programas">
-        <a class="brand-chip" href="https://www.linkedin.com/company/nocountrytalent" rel="noopener noreferrer" target="_blank">
-          <img src="./assets/brands/nocountry.png" alt="No Country" width="142" height="24" decoding="async">
-        </a>
-        <a class="brand-chip" href="https://www.linkedin.com/company/oracle" rel="noopener noreferrer" target="_blank" aria-label="Oracle">
-          <img class="brand-mark" src="./assets/brands/oracle.svg" alt="" width="72" height="24" decoding="async">
-          <span class="brand-word">Oracle</span>
-        </a>
-        <a class="brand-chip" href="https://www.linkedin.com/school/alura-latam" rel="noopener noreferrer" target="_blank">
-          <img src="./assets/brands/alura.svg" alt="Alura Latam" width="106" height="32" decoding="async">
-        </a>
-        <a class="brand-chip" href="https://companies.nocountry.tech" rel="noopener noreferrer" target="_blank">
-          <img src="./assets/brands/nocountry-companies.svg" alt="No Country Companies" width="176" height="32" decoding="async">
-        </a>
-        <span class="brand-chip">
-          <img src="./assets/brands/cambio-belgrano.svg" alt="Cambio Belgrano" width="168" height="32" decoding="async">
-        </span>
-        <span class="brand-chip">
-          <img src="./assets/brands/aranxa-ecomm.svg" alt="Aranxa Ecomm" width="168" height="32" decoding="async">
-        </span>
-        <span class="brand-chip">
-          <img src="./assets/brands/ott.svg" alt="Ott Educación Superior" width="120" height="32" decoding="async">
-        </span>
-        <span class="brand-chip">
-          <img src="./assets/brands/codo-a-codo.svg" alt="Codo a Codo" width="168" height="32" decoding="async">
-        </span>
-        <span class="brand-chip">
-          <img src="./assets/brands/platzi.svg" alt="Platzi" width="160" height="42" decoding="async">
-        </span>
-        <span class="brand-chip">
-          <img src="./assets/brands/swan-school.svg" alt="Swan School of English, Oxford" width="176" height="32" decoding="async">
-        </span>
-      </nav>
+      </div>
+      <div class="company-marquee">
+        <nav class="company-bar" aria-label="Empresas y programas">
+          <div class="company-track">
+            <div class="company-set">
+              <a class="brand-chip" href="https://www.linkedin.com/company/nocountrytalent" rel="noopener noreferrer" target="_blank">
+                <img src="./assets/brands/nocountry.png" alt="No Country" width="142" height="24" decoding="async">
+              </a>
+              <a class="brand-chip" href="https://www.linkedin.com/company/oracle" rel="noopener noreferrer" target="_blank" aria-label="Oracle">
+                <img class="brand-mark" src="./assets/brands/oracle.svg" alt="" width="72" height="24" decoding="async">
+                <span class="brand-word">Oracle</span>
+              </a>
+              <a class="brand-chip" href="https://www.linkedin.com/school/alura-latam" rel="noopener noreferrer" target="_blank">
+                <img src="./assets/brands/alura.svg" alt="Alura Latam" width="106" height="32" decoding="async">
+              </a>
+              <a class="brand-chip" href="https://companies.nocountry.tech" rel="noopener noreferrer" target="_blank">
+                <img src="./assets/brands/nocountry-companies.svg" alt="No Country Companies" width="176" height="32" decoding="async">
+              </a>
+              <span class="brand-chip">
+                <img src="./assets/brands/cambio-belgrano.svg" alt="Cambio Belgrano" width="168" height="32" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/aranxa-ecomm.svg" alt="Aranxa Ecomm" width="168" height="32" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/ott.svg" alt="Ott Educación Superior" width="120" height="32" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/codo-a-codo.svg" alt="Codo a Codo" width="168" height="32" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/platzi.svg" alt="Platzi" width="160" height="42" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/swan-school.svg" alt="Swan School of English, Oxford" width="176" height="32" decoding="async">
+              </span>
+            </div>
+            <div class="company-set" aria-hidden="true">
+              <a class="brand-chip" href="https://www.linkedin.com/company/nocountrytalent" rel="noopener noreferrer" target="_blank" tabindex="-1">
+                <img src="./assets/brands/nocountry.png" alt="" width="142" height="24" decoding="async">
+              </a>
+              <a class="brand-chip" href="https://www.linkedin.com/company/oracle" rel="noopener noreferrer" target="_blank" tabindex="-1">
+                <img class="brand-mark" src="./assets/brands/oracle.svg" alt="" width="72" height="24" decoding="async">
+                <span class="brand-word">Oracle</span>
+              </a>
+              <a class="brand-chip" href="https://www.linkedin.com/school/alura-latam" rel="noopener noreferrer" target="_blank" tabindex="-1">
+                <img src="./assets/brands/alura.svg" alt="" width="106" height="32" decoding="async">
+              </a>
+              <a class="brand-chip" href="https://companies.nocountry.tech" rel="noopener noreferrer" target="_blank" tabindex="-1">
+                <img src="./assets/brands/nocountry-companies.svg" alt="" width="176" height="32" decoding="async">
+              </a>
+              <span class="brand-chip">
+                <img src="./assets/brands/cambio-belgrano.svg" alt="" width="168" height="32" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/aranxa-ecomm.svg" alt="" width="168" height="32" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/ott.svg" alt="" width="120" height="32" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/codo-a-codo.svg" alt="" width="168" height="32" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/platzi.svg" alt="" width="160" height="42" decoding="async">
+              </span>
+              <span class="brand-chip">
+                <img src="./assets/brands/swan-school.svg" alt="" width="176" height="32" decoding="async">
+              </span>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="wrap">
       <div class="footer-row">
         <p>© <span id="year">2026</span> Lara Minaverry</p>
         <p>

@@ -7,8 +7,12 @@ const SITE = {
 };
 
 const html = document.documentElement;
-const themeBtn = document.getElementById("theme-toggle");
-const langBtns = document.querySelectorAll("[data-lang]");
+const themeOpts = document.querySelectorAll("[data-theme-set]");
+const langOptions = document.querySelectorAll("[data-lang]");
+const langDropdown = document.getElementById("lang-dropdown");
+const langTrigger = document.getElementById("lang-trigger");
+const langMenu = document.getElementById("lang-menu");
+const langCurrent = document.getElementById("lang-current");
 const menuBtn = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
 const navBackdrop = document.getElementById("nav-backdrop");
@@ -19,10 +23,20 @@ const githubLinks = document.querySelectorAll("[data-github-link]");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const LANGS = ["es", "en", "pt"];
+const LANG_META = {
+  es: { name: "Español", iso: "ES" },
+  en: { name: "English", iso: "EN" },
+  pt: { name: "Português", iso: "PT" },
+};
 const THEME_LABELS = {
-  es: { toLight: "Cambiar a modo claro", toDark: "Cambiar a modo oscuro" },
-  en: { toLight: "Switch to light mode", toDark: "Switch to dark mode" },
-  pt: { toLight: "Mudar para o modo claro", toDark: "Mudar para o modo escuro" },
+  es: { light: "Modo claro", dark: "Modo oscuro" },
+  en: { light: "Light mode", dark: "Dark mode" },
+  pt: { light: "Modo claro", dark: "Modo escuro" },
+};
+const LANG_TRIGGER_LABELS = {
+  es: (name) => `Idioma: ${name}`,
+  en: (name) => `Language: ${name}`,
+  pt: (name) => `Idioma: ${name}`,
 };
 const MENU_LABELS = {
   es: { open: "Abrir menú", close: "Cerrar menú" },
@@ -57,16 +71,38 @@ function currentLang() {
   return LANGS.includes(html.lang) ? html.lang : "es";
 }
 
+function currentTheme() {
+  return html.getAttribute("data-theme") === "dark" ? "dark" : "light";
+}
+
+function isLangMenuOpen() {
+  return langTrigger?.getAttribute("aria-expanded") === "true";
+}
+
+function setLangMenuOpen(open) {
+  if (!langTrigger || !langMenu) return;
+  langTrigger.setAttribute("aria-expanded", String(open));
+  langMenu.hidden = !open;
+}
+
 function syncChrome() {
   const lang = currentLang();
-  langBtns.forEach((btn) => {
-    btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
+  const theme = currentTheme();
+  const meta = LANG_META[lang];
+  const themeLabels = THEME_LABELS[lang];
+
+  langOptions.forEach((btn) => {
+    btn.setAttribute("aria-selected", String(btn.dataset.lang === lang));
   });
-  if (themeBtn) {
-    const toLight = html.getAttribute("data-theme") === "dark";
-    const labels = THEME_LABELS[lang];
-    themeBtn.setAttribute("aria-label", toLight ? labels.toLight : labels.toDark);
-  }
+  if (langCurrent) langCurrent.textContent = meta.name;
+  if (langTrigger) langTrigger.setAttribute("aria-label", LANG_TRIGGER_LABELS[lang](meta.name));
+
+  themeOpts.forEach((btn) => {
+    const value = btn.dataset.themeSet;
+    btn.setAttribute("aria-pressed", String(value === theme));
+    btn.setAttribute("aria-label", themeLabels[value] || themeLabels.light);
+  });
+
   if (menuBtn) {
     const isOpen = Boolean(navLinks?.classList.contains("open"));
     const labels = MENU_LABELS[lang];
@@ -113,6 +149,7 @@ function setMenuOpen(isOpen) {
       navBackdrop.hidden = true;
     }
   }
+  if (!desktop && !open) setLangMenuOpen(false);
   syncChrome();
 }
 
@@ -120,13 +157,21 @@ function syncMenuMode() {
   setMenuOpen(isDesktopNav());
 }
 
-langBtns.forEach((btn) => {
-  btn.addEventListener("click", () => setLang(btn.dataset.lang));
+langOptions.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    setLang(btn.dataset.lang);
+    setLangMenuOpen(false);
+    langTrigger?.focus();
+  });
 });
 
-themeBtn?.addEventListener("click", () => {
-  const isDark = html.getAttribute("data-theme") === "dark";
-  setTheme(isDark ? "light" : "dark");
+langTrigger?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  setLangMenuOpen(!isLangMenuOpen());
+});
+
+themeOpts.forEach((btn) => {
+  btn.addEventListener("click", () => setTheme(btn.dataset.themeSet));
 });
 
 menuBtn?.addEventListener("click", (event) => {
@@ -142,8 +187,20 @@ navLinks?.querySelectorAll("a").forEach((link) => {
   });
 });
 
+document.addEventListener("click", (event) => {
+  if (langDropdown && !langDropdown.contains(event.target)) {
+    setLangMenuOpen(false);
+  }
+});
+
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !isDesktopNav()) setMenuOpen(false);
+  if (event.key !== "Escape") return;
+  if (isLangMenuOpen()) {
+    setLangMenuOpen(false);
+    langTrigger?.focus();
+    return;
+  }
+  if (!isDesktopNav()) setMenuOpen(false);
 });
 
 if (typeof desktopNav.addEventListener === "function") {
@@ -332,3 +389,37 @@ if (impacto) {
     revealImpact();
   }
 }
+
+function initVideoGallery() {
+  const gallery = document.querySelector("[data-gallery]");
+  const track = gallery?.querySelector(".video-gallery-track");
+  const prev = gallery?.querySelector(".gallery-prev");
+  const next = gallery?.querySelector(".gallery-next");
+  if (!gallery || !track || !prev || !next) return;
+
+  function cardStep() {
+    const card = track.querySelector(".media-card");
+    if (!card) return track.clientWidth;
+    const styles = getComputedStyle(track);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap) || 14;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function syncGalleryNav() {
+    const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth - 2);
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= maxScroll;
+  }
+
+  prev.addEventListener("click", () => {
+    track.scrollBy({ left: -cardStep(), behavior: reduceMotion ? "auto" : "smooth" });
+  });
+  next.addEventListener("click", () => {
+    track.scrollBy({ left: cardStep(), behavior: reduceMotion ? "auto" : "smooth" });
+  });
+  track.addEventListener("scroll", syncGalleryNav, { passive: true });
+  window.addEventListener("resize", syncGalleryNav);
+  syncGalleryNav();
+}
+
+initVideoGallery();
