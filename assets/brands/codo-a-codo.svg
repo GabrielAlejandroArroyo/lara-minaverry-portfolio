@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 32" role="img" aria-label="Codo a Codo">
+  <rect width="32" height="32" rx="8" fill="#0072C6"/>
+  <path fill="#fff" d="M10 16a6 6 0 1 1 12 0 6 6 0 0 1-12 0zm6-4.2a4.2 4.2 0 1 0 0 8.4 4.2 4.2 0 0 0 0-8.4z"/>
+  <path fill="#fff" d="M14.2 15.1h3.6v1.8h-3.6z"/>
+  <text x="42" y="14" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#F3F4F6">CODO A CODO</text>
+  <text x="42" y="26" font-family="Inter, Segoe UI, sans-serif" font-size="9" font-weight="600" fill="#D1D5DB">CABA</text>
+</svg>

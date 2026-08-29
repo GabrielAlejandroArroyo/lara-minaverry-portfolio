@@ -1014,16 +1014,53 @@ footer {
 .company-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 18px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 28px;
 }
 
-.company-bar a,
-.company-bar span {
-  color: var(--ink);
+.brand-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  min-width: 118px;
+  padding: 10px 16px;
+  background: #0b0f14;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
   text-decoration: none;
-  font-weight: 600;
+  color: inherit;
+}
+
+.brand-chip img {
+  display: block;
+  height: 28px;
+  width: auto;
+  max-width: 148px;
+  object-fit: contain;
+}
+
+.brand-chip .brand-mark {
+  height: 26px;
+  max-width: 72px;
+}
+
+.brand-word {
+  margin-left: 8px;
+  font-weight: 700;
   font-size: 0.95rem;
+  letter-spacing: -0.02em;
+  color: #f3f4f6;
+}
+
+.brand-chip:hover,
+.brand-chip:focus-visible {
+  border-color: var(--teal);
+}
+
+html[data-theme="light"] .brand-chip {
+  background: #111827;
+  border-color: #1f2937;
 }
 
 .footer-row {

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 32" role="img" aria-label="Swan School of English, Oxford">
+  <rect width="32" height="32" rx="8" fill="#1E3A5F"/>
+  <path fill="#E8EEF4" d="M8.2 20.2c2.4-1.6 4.2-2 6.4-1.2 1.6.6 2.6 0 3.2-1.4.4 2.8-1.2 5.2-4.6 6.4-3.6 1.2-7.2.2-8.4-2.2 1.2.2 2.4.2 3.4-.2z"/>
+  <path fill="#E8EEF4" d="M18.8 12.2c1.8-2 4.4-2.8 6.6-1.6-.8 2.2-2.6 3.4-5 3.8-1.4.2-2.2-.6-1.6-2.2z"/>
+  <text x="42" y="14" font-family="Georgia, serif" font-size="11" font-weight="700" fill="#F3F4F6">Swan School</text>
+  <text x="42" y="26" font-family="Inter, Segoe UI, sans-serif" font-size="9" font-weight="600" fill="#D1D5DB">OXFORD</text>
+</svg>
