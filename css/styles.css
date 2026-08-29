@@ -104,7 +104,7 @@ a {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 40;
+  z-index: 50;
   backdrop-filter: blur(16px);
   background: var(--header-bg);
   border-bottom: 1px solid var(--line);
@@ -120,6 +120,13 @@ a {
   gap: 16px;
 }
 
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
 .logo {
   color: var(--ink);
   text-decoration: none;
@@ -128,25 +135,40 @@ a {
 }
 
 .nav-links {
-  display: none;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
-  z-index: 1;
+  bottom: 0;
+  z-index: 45;
+  display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0;
-  max-height: min(70vh, 640px);
+  gap: 2px;
+  width: min(300px, 86vw);
+  padding: 72px 16px 24px;
   overflow-y: auto;
   background: var(--card);
-  border-bottom: 1px solid var(--line);
-  padding: 8px 16px 16px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  border-right: 1px solid var(--line);
+  box-shadow: 16px 0 40px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100%);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.28s var(--ease), visibility 0.28s var(--ease);
 }
 
 .nav-links.open {
-  display: flex;
+  transform: none;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.nav-drawer-title {
+  margin: 0 12px 10px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .nav-links a {
@@ -154,7 +176,7 @@ a {
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
-  padding: 14px 12px;
+  padding: 12px 14px;
   min-height: 44px;
   border-radius: 8px;
 }
@@ -275,7 +297,7 @@ a {
 .nav-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 35;
+  z-index: 42;
   background: rgba(15, 20, 25, 0.46);
   border: 0;
   padding: 0;
@@ -1294,6 +1316,14 @@ html[data-theme="light"] .brand-chip {
 
   .lang-btn {
     padding: 6px 7px;
+  }
+
+  .lang-code {
+    display: none;
+  }
+
+  .nav-links {
+    width: min(280px, 88vw);
   }
 }
 

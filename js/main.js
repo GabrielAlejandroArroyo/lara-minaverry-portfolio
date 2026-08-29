@@ -92,7 +92,19 @@ function setMenuOpen(isOpen) {
   navLinks?.classList.toggle("open", isOpen);
   document.body.classList.toggle("nav-open", isOpen);
   menuBtn?.setAttribute("aria-expanded", String(isOpen));
-  if (navBackdrop) navBackdrop.hidden = !isOpen;
+  if (navLinks) {
+    navLinks.setAttribute("aria-hidden", String(!isOpen));
+    navLinks.inert = !isOpen;
+  }
+  if (navBackdrop) {
+    if (isOpen) {
+      window.setTimeout(() => {
+        if (document.body.classList.contains("nav-open")) navBackdrop.hidden = false;
+      }, 20);
+    } else {
+      navBackdrop.hidden = true;
+    }
+  }
   syncChrome();
 }
 
@@ -105,9 +117,9 @@ themeBtn?.addEventListener("click", () => {
   setTheme(isDark ? "light" : "dark");
 });
 
-menuBtn?.addEventListener("click", () => {
-  const isOpen = !navLinks?.classList.contains("open");
-  setMenuOpen(isOpen);
+menuBtn?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  setMenuOpen(!document.body.classList.contains("nav-open"));
 });
 
 navBackdrop?.addEventListener("click", () => setMenuOpen(false));
@@ -119,6 +131,8 @@ navLinks?.querySelectorAll("a").forEach((link) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") setMenuOpen(false);
 });
+
+if (navLinks) navLinks.inert = true;
 
 const savedLang = readStore("lm-lang");
 if (LANGS.includes(savedLang)) {
