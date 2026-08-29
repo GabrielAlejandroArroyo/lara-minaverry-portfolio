@@ -262,15 +262,31 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   min-height: 42px;
-  padding: 6px 10px;
-  font-size: 0.8rem;
+  padding: 6px 9px;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
 }
 
 .lang-btn[aria-pressed="true"] {
   border-color: var(--teal);
   background: var(--teal-wash);
   color: var(--teal-deep);
+}
+
+.flag {
+  width: 16px;
+  height: 11px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  display: block;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.lang-code {
+  font-weight: 700;
 }
 
 .hamburger {
@@ -1371,8 +1387,12 @@ html[data-theme="light"] .brand-chip {
   }
 
   .lang-btn {
-    padding: 6px 8px;
-    font-size: 0.74rem;
+    padding: 6px 7px;
+    gap: 5px;
+  }
+
+  .lang-code {
+    font-size: 0.72rem;
   }
 }
 
